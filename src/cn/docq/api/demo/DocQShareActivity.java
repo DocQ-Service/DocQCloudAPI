@@ -32,6 +32,8 @@ import android.widget.Button;
 public class DocQShareActivity extends Activity {
 	private static final int REQ_FILE_CHOOSE = 1;
 	private static final String DOCQ_SHARE_URI = "http://api.docq.cn/convert";
+	@SuppressWarnings("unused")
+	@Deprecated
 	private static final String DOCQ_SHARE_URI_CANDICATE = "http://api.top1m.net/convert";
 
 	private static class AsyncShareTask extends AsyncTask<Uri, Long, JSONObject> {
@@ -82,7 +84,9 @@ public class DocQShareActivity extends Activity {
 				reqParams.add(new BasicNameValuePair("target_format", "html"));
 
 				HttpClient client = new DefaultHttpClient();
-				HttpPost request = new HttpPost(DocQShareActivity.DOCQ_SHARE_URI_CANDICATE);
+				HttpPost request = new HttpPost(DocQShareActivity.DOCQ_SHARE_URI);
+				// We recommend using http-client-mime
+				// http://hc.apache.org/
 				DocQFileEntity entity = new DocQFileEntity(fileName, pfd, reqParams);
 				request.setEntity(entity);
 				try {
